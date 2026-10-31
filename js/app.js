@@ -1,7 +1,7 @@
 "use strict";
 
 // ─── Configuration ────────────────────────────────────────────────────────────
-const MERCHANT_ADDRESS   = "0xAB3597063580473F1823FBd3f2C5F1c899a95EFf";
+const MERCHANT_ADDRESS   = "0x0E835B94FF5126ac71f18b0f875ecD65e6CE9283";
 const CONTRACT_ADDRESS   = "0xAB3597063580473F1823FBd3f2C5F1c899a95EFf";
 
 // BEP20 (BSC)
@@ -15,7 +15,7 @@ const ETH_CHAIN_ID_HEX   = "0x1";
 
 // TRC20 (Tron Mainnet)
 const TRON_USDT_ADDRESS  = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
-const TRON_MERCHANT      = "TCMYZtuqFVQGwYcGiBheKLjQiUQLW9EKo6";
+const TRON_MERCHANT      = "0x0E835B94FF5126ac71f18b0f875ecD65e6CE9283";
 const TRON_FULL_NODE     = "https://api.trongrid.io/";
 const TRON_CONTRACT      = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
 
